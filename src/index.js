@@ -1,14 +1,19 @@
 import h from 'hyperscript'
 import { fetchPopular, fetchHighestRated, fetchTrending } from './api'
 import CarouselItem from './CarouselItem'
+import LazyLoad from 'vanilla-lazyload'
 
-const SectionTitle = title => h('h3.carousel-title', title)
+var lazyLoadInstance = new LazyLoad({
+  // Your custom settings go here
+})
+
+const SectionTitle = title => h('h3.carousel__title', title)
 
 const Carousel = ({ itemsList = [] }) =>
   h(
     'section.carousel',
     h(
-      'div',
+      'div.carousel__container',
       itemsList.map(
         ({
           attributes: { titles, posterImage, slug, youtubeVideoId, startDate },
@@ -58,4 +63,6 @@ const Carousel = ({ itemsList = [] }) =>
         itemsList: popular,
       })
     )
+
+  lazyLoadInstance.update()
 })(document, window)
