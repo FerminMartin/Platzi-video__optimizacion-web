@@ -2,6 +2,7 @@ import h from 'hyperscript'
 import { fetchPopular, fetchHighestRated, fetchTrending } from './api'
 import CarouselItem from './CarouselItem'
 import LazyLoad from 'vanilla-lazyload'
+import { modalListener } from './modal'
 
 var lazyLoadInstance = new LazyLoad({
   // Your custom settings go here
@@ -64,5 +65,13 @@ const Carousel = ({ itemsList = [] }) =>
       })
     )
 
+  // const carouselImages = document.querySelectorAll('carousel-item__img')
+  // const observer = lozad(carouselImages)
+  // observer.observe()
   lazyLoadInstance.update()
+
+  const allYoutubeLinks = document.querySelectorAll('.js-video-link')
+  allYoutubeLinks.forEach(link => {
+    link.addEventListener('click', modalListener)
+  })
 })(document, window)
