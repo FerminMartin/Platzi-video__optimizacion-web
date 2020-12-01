@@ -29,6 +29,13 @@ const config = {
       chunks: 'all',
     },
   },
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
 }
-
 module.exports = config
