@@ -18,7 +18,7 @@ async function process(request, response) {
   response.writeHead(206, { 'Content-Type': 'text/html; charset=utf-8' })
   response.write(precontent)
 
-  const content = await render()
+  const content = await render() // carouselItems
   response.write(content)
 
   response.write(postcontent)
